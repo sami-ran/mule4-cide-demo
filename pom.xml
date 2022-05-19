@@ -26,7 +26,7 @@
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
@@ -39,7 +39,7 @@
 						</sharedLibrary>
 					</sharedLibraries>
 				</configuration>
-			</plugin>
+			</plugin> -->
 			<!-- Added for CICD -->
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
@@ -57,6 +57,12 @@
 						<workerType>MICRO</workerType>
 						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
+					<sharedLibraries>
+						<sharedLibrary>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+						</sharedLibrary>
+					</sharedLibraries>
 				</configuration>
 			</plugin>
 
