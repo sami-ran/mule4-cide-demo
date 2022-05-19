@@ -26,4 +26,21 @@ payload]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
+	<flow name="mule-cicd-demoFlow1" doc:id="261948af-4d53-4696-b548-8d534e002674" >
+		<http:listener doc:name="Listener" doc:id="9f34f120-a599-4a07-88ed-b2d4f8342cbb" config-ref="HTTP_Listener_config" path="/flights/{ID}" allowedMethods="GET"/>
+		<db:select doc:name="Select" doc:id="7a36c5c0-dbc7-4483-a2e1-dc92441dde28" config-ref="Database_Config">
+			<db:sql ><![CDATA[select * from american where id =:fid]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	fid: attributes.uriParams.ID
+}]]]></db:input-parameters>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="3f8102e8-d204-48c2-9f0a-195f1d329192" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
 </mule>
